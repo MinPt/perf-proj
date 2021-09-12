@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { postsSlice } from "../../store/postsSlice";
 import { memo } from "react";
 
-const PostItem = ({ title, body, id }) => {
+const PostItem = ({ title, body, id, onDelete }) => {
   const dispatch = useDispatch();
 
   return (
@@ -11,7 +11,10 @@ const PostItem = ({ title, body, id }) => {
       <div className="d-flex justify-content-between">
         <h4>{title}</h4>
         <Button
-          onClick={() => dispatch(postsSlice.actions.delete(id))}
+          onClick={() => {
+            dispatch(postsSlice.actions.delete(id));
+            onDelete(id);
+          }}
           variant="danger"
           className="m-2"
         >

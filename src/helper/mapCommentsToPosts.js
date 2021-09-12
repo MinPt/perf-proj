@@ -11,7 +11,6 @@ export default function mapCommentsToPosts(postsArray, commentsArray) {
 
     const postsWithComments = postsArray.map((item) => {
       const newItem = { ...item };
-      console.log(MapCommentsToPosts.get(item.oldId));
       newItem.comments = MapCommentsToPosts.get(item.oldId);
       return newItem;
     });
