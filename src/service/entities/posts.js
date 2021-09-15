@@ -9,12 +9,19 @@ class PostsApi {
   }
 
   async getPosts() {
-    const postsArray = [];    
-
-    for (let i = 0; i < 10; i++) {
-      const { data } = await this.api.get(`posts`);
-      postsArray.push(data);
-    }
+    const promises = await Promise.all([
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+      this.api.get(`posts`),
+    ]);
+    const postsArray = promises.map((item) => item.data);
     const comments = await CommentsApi.getComments();
     const reindexedArray = reindexArray(postsArray);
     const postsWithComments = mapCommentsToPosts(reindexedArray, comments);

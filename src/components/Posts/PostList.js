@@ -21,12 +21,22 @@ class PostsList extends Component {
       }
     }, 100);
     this.loadPosts();
+    this.hardLoad();
   }
+
+  hardLoad = async () => {
+    setInterval(() => {
+      for (let i = 0; i < 1e8; i++) {
+        continue;
+      }
+      console.log("iteration");
+    }, 0);
+  };
 
   loadPosts = () => {
     const posts = this.props.posts.slice(
-      this.state.page * 100,
-      this.state.page * 100 + 100
+      this.state.page * 10,
+      this.state.page * 10 + 10
     );
     console.log(posts, this.state.posts);
     const statePosts = this.state.posts;
